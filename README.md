@@ -16,7 +16,7 @@
 |/user      |   POST   | insert new user |
 |/user/:id   |   PUT   | Update user |
 |/user/:id        |   DELETE  | delete user|
-|/user/:id    |    GET | find one food|
+|/user/:id    |    GET | find one user|
 ================================
 
 ###### 3. APi Endpoint for CARD
