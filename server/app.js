@@ -2,7 +2,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/spaced-repitition', (err) => {
+
+require('dotenv').config()
+
+mongoose.connect(`mongodb://${process.env.HOST_NAME}/${process.env.DATABASE_NAME}`, (err) => {
   err ? console.log('is not connected') : console.log('connected')
 })
 mongoose.Promise = global.Promise
