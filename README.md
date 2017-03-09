@@ -43,4 +43,4 @@
 ##### HOW TO RUN APPS
 ###### 1. The first NPM INSTALL
 ###### 2. Open a terminal and go to project folder and run nodemon app.js (server side)
-###### 3. Open a terminal and go to project folder and run live-server (client side)
+###### 3. Open a terminal and go to project folder and run live-server (client side, optional)
