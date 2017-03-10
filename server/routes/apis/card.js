@@ -10,4 +10,6 @@ router.post('/card', controller.createCard)
 router.put('/card/:id', controller.updateCard)
 router.delete('/card/:id', controller.removeCard)
 
+router.get('/card/next/show', controller.nextExecute)
+
 module.exports = router

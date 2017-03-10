@@ -87,9 +87,25 @@ let findOneData = (req, res, next) => {
   })
 }
 
+let nextExecute = (req, res, next) => {
+  card.find({
+    execute_at: {$gt: moment()}
+  }).limit(10).then((data) => {
+    // !data ? res.send('Items isEmpty') : res.send(data)
+    // let willExecute = data.filter(function (card) {
+    //   return card.execute_at > moment()
+    // })
+
+    res.send(data)
+  }).catch((e) => {
+    if (e) throw e
+  })
+}
+
 module.exports = {
   readCard,
   createCard,
   updateCard,
   removeCard,
-findOneData}
+  findOneData,
+nextExecute}
