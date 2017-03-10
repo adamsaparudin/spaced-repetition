@@ -11,7 +11,7 @@ class SM2 {
    *
    * @return float A ceiled value of the interval (in days)
    */
-  getInterval(time = 1, factor = 2.5) {
+  getInterval (time = 1 , factor = 2.5) {
     if (time < 1) {
       console.log('The number of repetitions must be 1 or higher')
     }
@@ -40,7 +40,7 @@ class SM2 {
    *
    * @return float The item's new E-factor
    */
-  calcNewFactor(oldFactor = 2.5, quality = 4) {
+  calcNewFactor (oldFactor = 2.5 , quality = 4) {
     if (quality > 5 || quality < 0) {
       console.log('Quality must be between 0 and 5')
     }
@@ -51,6 +51,8 @@ class SM2 {
   }
 }
 
-let sm2 = new SM2()
-console.log(sm2.calcNewFactor(1.7000000000000002, 0));
-console.log(sm2.getInterval(2, sm2.calcNewFactor(1.7000000000000002, 0)))
+module.exports = new SM2()
+
+// let sm2 = new SM2()
+// console.log(sm2.calcNewFactor(1.7000000000000002, 0))
+// console.log(sm2.getInterval(2, sm2.calcNewFactor(1.7000000000000002, 0)))
