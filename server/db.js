@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+require('dotenv').config()
 
-let mongoDB = 'mongodb://127.0.0.1/spaced_repetition_db'
+let mongoDB = `mongodb://${process.env.HOST_NAME}/${process.env.DATABASE_NAME}`
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoDB)
 
