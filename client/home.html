@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,86 +27,55 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- vueScript -->
+    <script src="https://unpkg.com/vue"></script>
 
-</head>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js"></script>
+    <script src="node_modules/push.js/push.js"></script>
+  </head>
 
-<body>
+  <body onload="startTime()" id="homeBody">
     <!-- Header -->
-    <div class="header">
+    <div id="app" class="header">
 
-        <div class="row">
-          <div class="navbar transparent navbar-inverse navbar-static-top hr">
-            <div class="navbar-brand logo"><img src="/img/logo2.png" alt=""></div>
-            <div class="navbar-brand-right">
-            </div>
-            <div class="container">
-              <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav mineul" style="font-size:17px;margin-top:9px; color:white;">
-                  <li><a href="#" data-toggle="modal" data-target="#cardModal">Add Card</a></li>
-                  <li><a href="#" data-toggle="modal" data-target="#deckModal">Add Deck</a></li>
-                  <li><a href="#">Log-out</a></li>
-                </ul>
-              </div>
+      <div class="row">
+        <div class="navbar transparent navbar-inverse navbar-static-top hr">
+          <div class="navbar-brand logo"><img src="/img/logo2.png" alt=""></div>
+          <div class="navbar-brand-right">
+          </div>
+          <div class="container">
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav mineul" style="font-size:17px;margin-top:9px; color:white;">
+                <li><a href="#" data-toggle="modal" data-target="#cardModal">Add Card</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#deckModal">Add Deck</a></li>
+                <li><a href="#" @click="logout">Log-out</a></li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-1">
+      </div>
+      <div class="row">
+        <div class="col-md-1">
 
-          </div>
-          <div class="col-md-5 highlight left" style="margin-left:0;">
-            <div class="error-notice">
-              <div class="oaerror danger">
-                <strong>Error</strong> - You provided a wrong username/password
-              </div>
-              <div class="oaerror warning">
-                <strong>Error</strong> - You left a field Blank
-              </div>
-              <div class="oaerror danger">
-                <strong>Error</strong> - Please Select a Different Username
-              </div>
-              <div class="oaerror warning">
-                <strong>Yeppi</strong> - You are successfully registered. Please login.
-              </div>
-              <div class="oaerror danger">
-                <strong>Error</strong> - Please Select a Different Username
-              </div>
-              <div class="oaerror warning">
-                <strong>Yeppi</strong> - You are successfully registered. Please login.
-              </div>
-              <div class="oaerror danger">
-                <strong>Error</strong> - Please Select a Different Username
-              </div>
-              <div class="oaerror warning">
-                <strong>Yeppi</strong> - You are successfully registered. Please login.
-              </div>
-              <div class="oaerror danger">
-                <strong>Error</strong> - Please Select a Different Username
-              </div>
-              <div class="oaerror warning">
-                <strong>Yeppi</strong> - You are successfully registered. Please login.
-              </div>
-              <div class="oaerror danger">
-                <strong>Error</strong> - Please Select a Different Username
-              </div>
-              <div class="oaerror warning">
-                <strong>Yeppi</strong> - You are successfully registered. Please login.
-              </div>
-              <div class="oaerror danger">
-                <strong>Error</strong> - Please Select a Different Username
-              </div>
-              <div class="oaerror warning">
-                <strong>Yeppi</strong> - You are successfully registered. Please login.
-              </div>
+        </div>
+        <div class="col-md-5 highlight left" style="margin-left:0;">
+          <div v-for="data in cards" class="error-notice">
+            <div class="oaerror danger">
+              <strong>Question</strong> - {{data.question}}
+            </div>
+            <div class="oaerror warning">
+              <strong>Date</strong> - {{data.execute_at}}
             </div>
           </div>
-          <div class="col-md-5 highlight" style="margin-right:0;">
-
-          </div>
-          <div class="col-md-1">
-
-          </div>
         </div>
+        <div class="col-md-5 highlight" style="margin-right:0;">
+          <h1 id="clock"></h1>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+      </div>
     </div>
 
     <div id="cardModal" class="modal fade" role="dialog">
@@ -120,28 +89,33 @@
           </div>
           <div class="modal-body">
             <form>
-             <div class="form-group">
-               <label for="deckName">Name Deck:</label>
-               <select class="form-control" id="deckName">
-                 <option>1</option>
-                 <option>2</option>
-                 <option>3</option>
-                 <option>4</option>
+              <div class="form-group">
+                <label for="deckName">Name Deck:</label>
+                <select class="form-control" id="deckName" v-model="cardDeck">
+                 <option v-for="data in decks" :value="data._id">{{data.name}}</option>
                </select>
-             </div>
-             <div class="form-group">
-               <label for="question">Question:</label>
-               <input type="question" class="form-control" id="question">
-             </div>
-             <div class="form-group">
-               <label for="answer">Answer:</label>
-               <input type="answer" class="form-control" id="answer">
-             </div>
+              </div>
+              <div class="form-group">
+                <label for="question">Question:</label>
+                <input type="question" class="form-control" id="question" v-model="question">
+              </div>
+              <div class="form-group">
+                <label for="answer">Answer:</label>
+                <input type="answer" class="form-control" id="answer" v-model="answer">
+              </div>
+              <label for="deckName">Level:</label>
+              <select class="form-control" id="deckName" v-model="level">
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+              </select>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success" name="submit">Submit</button>
+            <button type="button" class="btn btn-success" name="submit" @click="addCard">Submit</button>
           </div>
         </div>
 
@@ -161,13 +135,13 @@
             <div class="form">
               <div class="form-group">
                 <label for="deckName">Deck Name:</label>
-                <input type="deckName" class="form-control" id="deckName">
+                <input type="deckName" class="form-control" id="deckName" v-model="deck">
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success" name="submit">Submit</button>
+            <button type="button" class="btn btn-success" name="submit" @click="addDeck">Submit</button>
           </div>
         </div>
 
@@ -176,12 +150,47 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
+    <script src="js/home.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/deck.js"></script>
+    <script type="text/javascript">
+      function startTime() {
+        // Get first card to be executed
+        var today = new Date();
+        /*
+          if (today === dateCardExecute) {
+          Push.create("You have some question to remember", {
+            body: "cardQuestion ? ",
+            icon: 'img/logo.png',
+            timeout: 4000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+          });
+        }
+        */
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('clock').innerHTML =
+          h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+      }
 
-</body>
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i
+        }; // add zero in front of numbers < 10
+        return i;
+      }
+    </script>
+  </body>
 
 </html>

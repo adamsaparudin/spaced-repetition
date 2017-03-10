@@ -14,7 +14,7 @@ let createCard = (req, res, next) => {
   card.create({
     eFactor: eFactor,
     interval: interval,
-    execute_at: moment().add(interval , 'd'),
+    execute_at: moment().add(interval, 'd'),
     answer: req.body.answer,
     question: req.body.question,
     level: req.body.level,
@@ -43,6 +43,10 @@ let readCard = (req, res, next) => {
     if (e) throw e
   })
 }
+
+// let readToExeCard = (req, res, next) => {
+//   card.find({})
+// }
 
 let updateCard = (req, res, next) => {
   card.findById(req.params.id).then((data) => {
@@ -123,3 +127,4 @@ module.exports = {
   removeCard,
   findOneData,
 nextExecute}
+

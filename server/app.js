@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const passport = require('passport');
+const passport = require('passport')
 const cors = require('cors')
 const app = express()
 
