@@ -12,6 +12,14 @@ let createDeck = (req, res, next) => {
   })
 }
 
+// let addCardToDeck = (req, res, next) => {
+//   deck.findById(req.params.id)
+//     .then((deck) => {
+//
+//       deck.listOfCards.push()
+//     })
+// }
+
 let readDeck = (req, res, next) => {
   deck.find({})
     .populate('idUser')

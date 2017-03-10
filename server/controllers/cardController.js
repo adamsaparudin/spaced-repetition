@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const card = require('../models/card')
+const deck = require('../models/deck')
 const sm2 = require('../lib/sm2')
 const moment = require('moment')
 moment().format()
@@ -21,6 +22,11 @@ let createCard = (req, res, next) => {
     idDeck: req.body.idDeck,
     howManyExecuted: 1
   }).then((data) => {
+    deck.findById(data.idDeck)
+      .then((deck) => {
+        deck.listOfCards.push(data)
+        deck.save()
+      })
     res.send(data)
   }).catch((e) => {
     if (e) throw e
