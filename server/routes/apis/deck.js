@@ -2,7 +2,7 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/deckController')
+const controller = require('../../controllers/deckController')
 
 router.get('/deck', controller.readDeck)
 router.get('/deck/:id', controller.findOneData)
