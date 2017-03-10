@@ -17,6 +17,7 @@ let index = require('./routes/index')
 let user = require('./routes/user')
 let deck = require('./routes/deck')
 let card = require('./routes/card')
+let auth = requier('./routes/auth')
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }))
 
+app.use('/auth', auth)
 app.use('/api', index)
 app.use('/api', user)
 app.use('/api', deck)
