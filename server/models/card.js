@@ -13,6 +13,7 @@ let cardSchema = new Schema({
   interval: Number,
   level: {type: Number, min: 0, max: 5, default: 4},
   eFactor: Number,
+  howManyExecuted: Number,
   execute_at: Date,
   idUser: { type: Schema.Types.ObjectId, ref: 'User' },
   idDeck: { type: Schema.Types.ObjectId, ref: 'Deck' }
@@ -20,15 +21,28 @@ let cardSchema = new Schema({
   timestamps: true
 })
 
-cardSchema.post('init', function (card) {
-  card.eFactor = sm2.calcNewFactor(2.5, card.answerPoint)
-  card.interval = sm2.getInterval(1, card.eFactor)
-})
+// cardSchema.post('init', function (card) {
+//   card.eFactor = sm2.calcNewFactor(2.5, card.level)
+//   card.interval = sm2.getInterval(1, card.eFactor)
+//   card.execute_at = moment().add(card.interval , 'd')
+//   // console.log(card.interval)
+//   card.howManyExecuted = 1
+//   card.save()
+// })
+//
+// cardSchema.pre('save', function (next) {
+//   this.howManyExecuted += 1
+//   next()
+// })
 
-cardSchema.post('save', function (card) {
-  card.eFactor = sm2.calcNewFactor(card.eFactor, card.answerPoint)
-  card.interval = sm2.getInterval(card.interval, card.eFactor)
-})
+// cardSchema.post('save', function (card, next) {
+//   card.howManyExecuted += 1
+//   card.eFactor = sm2.calcNewFactor(card.eFactor, card.level)
+//   card.interval = sm2.getInterval(card.howManyExecuted, card.eFactor)
+//   card.execute_at = moment(card.execute_at).add(card.interval , 'days')
+//   card.save()
+//   next()
+// })
 
 let Card = mongoose.model('Card', cardSchema)
 
