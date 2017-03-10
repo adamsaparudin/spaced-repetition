@@ -2,7 +2,7 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/userController')
+const controller = require('../../controllers/userController')
 
 router.get('/user', controller.readUser)
 router.get('/user/:id', controller.findOneData)

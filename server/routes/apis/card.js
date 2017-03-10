@@ -2,7 +2,7 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/cardController')
+const controller = require('../../controllers/cardController')
 
 router.get('/card', controller.readCard)
 router.get('/card/:id', controller.findOneData)
