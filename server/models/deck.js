@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 let db = require('../db')
 
 let Schema = mongoose.Schema
@@ -13,4 +13,4 @@ let deckSchema = new Schema({
 
 let Deck = mongoose.model('Deck', deckSchema)
 
-module.exports = User
+module.exports = Deck
