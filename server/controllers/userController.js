@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const user = require('../models/user')
+const jwt = require('jsonwebtoken')
 
 let createUser = (req, res, next) => {
   user.create(req.body).then((data) => {
@@ -60,10 +61,20 @@ let findOneData = (req, res, next) => {
   })
 }
 
+let signIn = (req, res, next) => {
+  var payload = res.req.user
+  var token = jwt.sign({
+    name: payload.name,
+    fbId: payload.fb_id
+  }, 'lalalalala')
+  res.send(token)
+}
+
 module.exports = {
   readUser,
   createUser,
   updateUser,
   removeUser,
-  findOneData
+  findOneData,
+  signIn
 }
