@@ -12,10 +12,21 @@ let createDeck = (req, res, next) => {
   })
 }
 
+// let addCardToDeck = (req, res, next) => {
+//   deck.findById(req.params.id)
+//     .then((deck) => {
+//
+//       deck.listOfCards.push()
+//     })
+// }
+
 let readDeck = (req, res, next) => {
-  deck.find({}).then((data) => {
-    !data ? res.send('Items isEmpty') : res.send(data)
-  }).catch((e) => {
+  deck.find({})
+    .populate('idUser')
+    .populate('listOfCards')
+    .then((data) => {
+      !data ? res.send('Items isEmpty') : res.send(data)
+    }).catch((e) => {
     if (e) throw e
   })
 }
@@ -49,13 +60,16 @@ let removeDeck = (req, res, next) => {
 }
 
 let findOneData = (req, res, next) => {
-  deck.findById(req.params.id).then((data) => {
-    if (!data) {
-      res.send('Data is not found!')
-    } else {
-      res.send(data)
-    }
-  }).catch((e) => {
+  deck.findById(req.params.id)
+    .populate('idUser')
+    .populate('listOfCards')
+    .then((data) => {
+      if (!data) {
+        res.send('Data is not found!')
+      } else {
+        res.send(data)
+      }
+    }).catch((e) => {
     if (e) throw e
   })
 }
@@ -65,5 +79,4 @@ module.exports = {
   createDeck,
   updateDeck,
   removeDeck,
-  findOneData
-}
+findOneData}
