@@ -4,16 +4,16 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
+
 /* Global Styles */
 
-html,
-body {
+html, body {
     width: 100%;
     height: 100%;
 }
 
 body {
-    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .text-vertical-center {
@@ -29,32 +29,29 @@ body {
     font-weight: 700;
 }
 
+
 /* Custom Button Styles */
 
 .btn-dark {
     border-radius: 0;
     color: #fff;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.btn-dark:hover,
-.btn-dark:focus,
-.btn-dark:active {
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active {
     color: #fff;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .btn-light {
     border-radius: 0;
     color: #333;
-    background-color: rgb(255,255,255);
+    background-color: rgb(255, 255, 255);
 }
 
-.btn-light:hover,
-.btn-light:focus,
-.btn-light:active {
+.btn-light:hover, .btn-light:focus, .btn-light:active {
     color: #333;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 
@@ -73,14 +70,16 @@ body {
 }
 
 .navbar {
-   background-color: transparent;
-   background: transparent;
-   border-color: transparent;
+    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
 }
 
-.navbar li { color: #000 }
+.navbar li {
+    color: #000
+}
 
-.highlight  {
+.highlight {
     width: 550px;
     color: white;
     background: rgba(0, 0, 0, 0.26);
@@ -88,43 +87,49 @@ body {
     padding: 3%;
     height: 90vh;
     margin: 5px;
-	}
+}
 
 .left {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 .error-notice {
-  margin: 5px 5px; /* Making sure to keep some distance from all side */
+    margin: 5px 5px;
+    /* Making sure to keep some distance from all side */
 }
 
 .oaerror {
-  width: 90%; /* Configure it fit in your design  */
-  margin: 0 auto; /* Centering Stuff */
-  background-color: #FFFFFF; /* Default background */
-  padding: 20px;
-  border: 1px solid #eee;
-  border-left-width: 5px;
-  border-radius: 3px;
-  margin: 0 auto;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
+    width: 90%;
+    /* Configure it fit in your design  */
+    margin: 0 auto;
+    /* Centering Stuff */
+    background-color: #FFFFFF;
+    /* Default background */
+    padding: 20px;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
 }
 
 .danger {
-  border-left-color: #d9534f; /* Left side border color */
-  background-color: rgba(217, 83, 79, 0.1); /* Same color as the left border with reduced alpha to 0.1 */
+    border-left-color: lightgreen;
+    /* Left side border color */
+    background-color: rgba(217, 83, 79, 0.1);
+    /* Same color as the left border with reduced alpha to 0.1 */
 }
 
 .danger strong {
-  color:  #d9534f;
+    color: lightgreen;
 }
 
 .warning {
-  border-left-color: #f0ad4e;
-  background-color: rgba(240, 173, 78, 0.1);
+    border-left-color: blue;
+    background-color: rgba(240, 173, 78, 0.1);
 }
 
 .warning strong {
-  color: #f0ad4e;
+    color: blue;
 }

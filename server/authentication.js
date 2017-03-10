@@ -7,11 +7,11 @@ const User = require('./models/user')
 require('dotenv').config()
 
 passport.use(new FacebookStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/facebook/callback'
-  },
-  function(accessToken, refreshToken, profile, cb) {
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: 'http://localhost:3000/auth/facebook/callback'
+},
+  function (accessToken, refreshToken, profile, cb) {
     User.findOne({
       fb_id: profile.id
     }).then((data) => {
@@ -19,7 +19,7 @@ passport.use(new FacebookStrategy({
         User.create({
           fb_id: profile.id,
           name: profile.displayName
-        }, function(err, user) {
+        }, function (err, user) {
           cb(err)
         })
       } else {
@@ -31,6 +31,6 @@ passport.use(new FacebookStrategy({
   }
 ))
 
-passport.serializeUser(function(user, cb) {
+passport.serializeUser(function (user, cb) {
   cb(null, user)
 })

@@ -67,7 +67,7 @@ let signIn = (req, res, next) => {
     name: payload.name,
     fbId: payload.fb_id
   }, 'lalalalala')
-  res.send(token)
+  res.redirect('http://127.0.0.1:8080/home.html?q=' + token)
 }
 
 module.exports = {
