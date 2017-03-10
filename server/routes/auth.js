@@ -1,10 +1,15 @@
 'use strict'
 
-// const express = require('express')
-// const router = express.Router()
-//
-// router.get('/facebook', passport.authenticate('facebook'))
-//
-// router.get('/facebook/callback',
-//   passport.authenticate('facebook')
-// )
+const express = require('express')
+const router = express.Router()
+
+
+router.get('/facebook', passport.authenticate('facebook'))
+
+router.get('/facebook/callback',
+  passport.authenticate('facebook' {
+    failureRedirect: 'index/login'
+  }), (req, res) => {
+    res.redirect('index/home')
+  }
+)
